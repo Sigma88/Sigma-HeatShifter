@@ -7,10 +7,15 @@ namespace SigmaHeatShifterPlugin
     public class Version : MonoBehaviour
     {
         public static readonly System.Version number = new System.Version("0.1.0");
+        static bool first = true;
 
         void Awake()
         {
-            Debug.Log("[SigmaLog] Version Check:   Sigma HeatShifter v" + number);
+            if (first)
+            {
+                first = false;
+                Debug.Log("[SigmaLog] Version Check:   Sigma HeatShifter v" + number);
+            }
         }
     }
 }

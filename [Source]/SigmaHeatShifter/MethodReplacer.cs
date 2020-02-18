@@ -7,10 +7,16 @@ namespace SigmaHeatShifterPlugin
     [KSPAddon(KSPAddon.Startup.Instantly, true)]
     internal class MethodReplacer : MonoBehaviour
     {
+        static bool first = true;
+
         void Start()
         {
-            Replace<AeroGUI, AeroGUIPlus>("GetThermalStats", "GetThermalStatsPlus");
-            Replace<CelestialBody, CelestialBodyPlus>("GetAtmoThermalStats", "GetAtmoThermalStats");
+            if (first)
+            {
+                first = false;
+                Replace<AeroGUI, AeroGUIPlus>("GetThermalStats", "GetThermalStatsPlus");
+                Replace<CelestialBody, CelestialBodyPlus>("GetAtmoThermalStats", "GetAtmoThermalStats");
+            }
         }
 
         void Replace<TSource, TDestination>(string source, string destination)
